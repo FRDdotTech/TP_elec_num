@@ -25,7 +25,7 @@ begin
 		next_value := x"0000";
 		current_value := x"0001";
 	end if;
-	if en = en then
+	if en = '1' then
 		next_value := current_value + previous_value;
 		previous_value := current_value;
 		current_value := next_value;

@@ -5,13 +5,12 @@ use ieee.std_logic_1164.all;
 use IEEE.STD_LOGIC_signed.ALL;
 
 
-entity prescaler_e is
-	port(clk_in: in std_logic;
-			N : in std_logic_vector(31 downto 0);
+entity BRGH_e is
+	port(clk_in, sel: in std_logic;
 			clk_out: out std_logic);
 end entity;
 
-architecture prescaler_a of prescaler_e is
+architecture BRGH_a of BRGH_e is
 	
 begin	
 	process (clk_in)
@@ -26,7 +25,7 @@ begin
 		end if;
 		count := count + 1;
 	
-		if count = N then
+		if count = x"00001458" then
 			clk_out <= '1';
 			rst_flag := '1';
 		end if;

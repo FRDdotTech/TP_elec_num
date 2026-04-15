@@ -11,5 +11,5 @@ end entity;
 
 architecture const_vector_16_a of const_vector_16_e is
 begin
-	S <= "11111111";
+	S <= "1";
 end architecture;
