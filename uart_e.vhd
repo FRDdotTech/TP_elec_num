@@ -17,13 +17,13 @@ begin
 	
 	process (clk, en, br)
 	variable message_bit_count, en_flag : integer := 0;
-	variable message : std_logic_vector(8 downto 0);
+	variable message : std_logic_vector(9 downto 0);
 	begin
 	
 	if data_valid = '1' then
-		message := b"110000010";	--char "A" LSB fisrt
+		message := b"1010000100";	--char "B" LSB fisrt (data valid)
 	else
-		message := b"110000100";	--char "B" LSB fisrt
+		message := b"1010001010";	--char "E" LSB fisrt (data error)
 	end if;
 	
 	if clk'event and clk = '1' then
@@ -33,7 +33,7 @@ begin
 		if br = '1' and en_flag = 1 then
 				TX <= message(message_bit_count);
 				message_bit_count := message_bit_count + 1;
-		if message_bit_count = 9 then
+		if message_bit_count = 10 then
 			message_bit_count := 0;
 			en_flag := 0;
 		end if;

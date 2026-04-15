@@ -14,10 +14,15 @@ architecture BRGH_a of BRGH_e is
 	
 begin	
 	process (clk_in)
-	variable count : std_logic_vector(31 downto 0):= x"00000000";
+	variable count, max_count : std_logic_vector(31 downto 0):= x"00000000";
 	variable rst_flag : std_logic := '0';
 	begin
 	if clk_in'event and clk_in='1' then
+		if sel = '1' then
+			max_count := x"00001458";
+		else 
+			max_count := x"00000A2C";
+		end if;
 		clk_out <= '0';
 		if rst_flag = '1'then
 			count := x"00000000";
@@ -25,7 +30,7 @@ begin
 		end if;
 		count := count + 1;
 	
-		if count = x"00001458" then
+		if count = max_count then
 			clk_out <= '1';
 			rst_flag := '1';
 		end if;
